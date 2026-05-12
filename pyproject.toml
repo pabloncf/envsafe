@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "envsafe"
+version = "0.1.0"
+description = "A security audit CLI for environment variables and configuration files"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Pablo Cunha", email = "pabloncf@gmail.com" }]
+requires-python = ">=3.11"
+keywords = ["security", "environment", "secrets", "audit", "cli", "devops"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+envsafe = "envsafe.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/pabloncf/envsafe"
+Repository = "https://github.com/pabloncf/envsafe"
+Issues = "https://github.com/pabloncf/envsafe/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=envsafe --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["envsafe"]
+
+[tool.coverage.report]
+fail_under = 80
