@@ -1,0 +1,8 @@
+- id: envsafe
+  name: envsafe security scan
+  description: Scan for secrets and insecure configuration in environment files
+  language: python
+  entry: envsafe scan . --strict
+  pass_filenames: false
+  stages: [pre-commit]
+  additional_dependencies: []
